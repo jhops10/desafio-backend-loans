@@ -11,6 +11,43 @@ public class Loan {
 
 
     public boolean isPersonalLoanAvailable() {
+        return basicLoanAvailable();
+    }
+
+    public boolean isConsignmentLoanAvailable() {
+        return customer.isIncomeEqualOrGreaterThan(5000.0);
+    }
+
+    public boolean isGuaranteedLoanAvailable() {
+        return basicLoanAvailable();
+    }
+
+
+    public double getPersonalLoanInterestRate() {
+        if (isPersonalLoanAvailable()) {
+            return 4.0;
+        }
+
+        throw new LoanNotAvailableException();
+    }
+
+    public double getConsignmentLoanInterestRate() {
+        if (isConsignmentLoanAvailable()) {
+            return 2.0;
+        }
+
+        throw new LoanNotAvailableException();
+    }
+
+    public double getGuaranteedLoanInterestRate() {
+        if (isGuaranteedLoanAvailable()) {
+            return 3.0;
+        }
+
+        throw new LoanNotAvailableException();
+    }
+
+    private boolean basicLoanAvailable() {
         if (customer.isIncomeEqualOrLowerThan(3000.0)) {
             return true;
         }
@@ -20,11 +57,7 @@ public class Loan {
                 && customer.isFromLocation("SP");
     }
 
-    public double getPersonalLoanInterestRate() {
-        if (isPersonalLoanAvailable()) {
-            return 4.0;
-        }
 
-        throw new LoanNotAvailableException();
-    }
+
+
 }

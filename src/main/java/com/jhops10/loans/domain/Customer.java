@@ -22,6 +22,10 @@ public class Customer {
         return this.income <= value;
     }
 
+    public boolean isIncomeEqualOrGreaterThan(double value) {
+        return this.income >= value;
+    }
+
     public boolean isIncomeBetween(double minValue, double maxValue) {
         return this.income >= minValue && this.income <= maxValue;
     }
